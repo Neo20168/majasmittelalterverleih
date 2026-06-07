@@ -511,7 +511,35 @@
     .cal-day.past   { background: #F5F0E8; color: #BDBDBD; cursor: default; }
     .cal-day.avail  { background: #E8F5E9; color: #1B5E20; border-color: #A5D6A7; }
     .cal-day.avail:hover { background: #C8E6C9; transform: scale(1.06); z-index: 1; }
-    .cal-day.booked { background: #FFEBEE; color: #B71C1C; border-color: #EF9A9A; cursor: not-allowed; }
+    .cal-day.booked { background: #FFEBEE; color: #B71C1C; border-color: #EF9A9A; cursor: not-allowed; position: relative; }
+    .cal-day.booked[data-tooltip]:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1A0808;
+      color: #F8EDD5;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.78rem;
+      padding: 0.4rem 0.65rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      z-index: 100;
+      pointer-events: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .cal-day.booked[data-tooltip]:hover::before {
+      content: '';
+      position: absolute;
+      bottom: calc(100% + 2px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: #1A0808;
+      z-index: 100;
+      pointer-events: none;
+    }
     .cal-day.opt    { background: #FFF8E1; color: #E65100; border-color: #FFE082; }
     .cal-day.opt:hover { background: #FFECB3; transform: scale(1.06); z-index: 1; }
     .cal-day.today  { box-shadow: 0 0 0 2px var(--wine); }
@@ -1314,32 +1342,44 @@ const MONTHS = ['Januar','Februar','März','April','Mai','Juni',
                 'Juli','August','September','Oktober','November','Dezember'];
 const DAYS   = ['Mo','Di','Mi','Do','Fr','Sa','So'];
 
-// Demo-Belegungsdaten (bitte durch echte Daten ersetzen)
+// Belegungsdaten
 const AVAIL = {
   marktzelt: {
-    '2026-06-07':'booked','2026-06-08':'booked','2026-06-14':'opt',
-    '2026-06-21':'booked','2026-06-22':'booked',
-    '2026-07-04':'booked','2026-07-05':'booked','2026-07-11':'opt',
-    '2026-07-19':'booked','2026-07-26':'opt',
-    '2026-08-01':'booked','2026-08-02':'booked','2026-08-15':'opt',
+    '2026-07-15':'booked','2026-07-16':'booked','2026-07-17':'booked','2026-07-18':'booked','2026-07-19':'booked',
+    '2026-08-21':'booked','2026-08-22':'booked','2026-08-23':'booked',
+    '2026-10-07':'booked','2026-10-08':'booked','2026-10-09':'booked','2026-10-10':'booked',
   },
   ritterzelt: {
-    '2026-06-13':'booked','2026-06-14':'booked','2026-06-15':'booked',
-    '2026-06-28':'opt',
-    '2026-07-11':'booked','2026-07-12':'booked','2026-07-25':'opt',
-    '2026-07-26':'booked',
-    '2026-08-08':'booked','2026-08-09':'booked','2026-08-22':'opt',
+    '2026-07-15':'booked','2026-07-16':'booked','2026-07-17':'booked','2026-07-18':'booked','2026-07-19':'booked',
+    '2026-08-21':'booked','2026-08-22':'booked','2026-08-23':'booked',
+    '2026-10-07':'booked','2026-10-08':'booked','2026-10-09':'booked','2026-10-10':'booked',
   },
   rundzelt1: {
-    '2026-06-20':'booked','2026-06-21':'booked',
-    '2026-07-04':'opt','2026-07-18':'booked','2026-07-19':'booked',
-    '2026-08-01':'booked','2026-08-15':'opt',
+    '2026-07-15':'opt','2026-07-16':'opt','2026-07-17':'opt','2026-07-18':'opt','2026-07-19':'opt',
+    '2026-08-21':'opt','2026-08-22':'opt','2026-08-23':'opt',
+    '2026-10-07':'opt','2026-10-08':'opt','2026-10-09':'opt','2026-10-10':'opt',
   },
   rundzelt2: {
-    '2026-06-13':'booked','2026-06-14':'booked','2026-06-27':'opt',
-    '2026-07-11':'booked','2026-07-12':'booked',
-    '2026-07-25':'booked','2026-08-08':'booked',
+    '2026-07-15':'opt','2026-07-16':'opt','2026-07-17':'opt','2026-07-18':'opt','2026-07-19':'opt',
+    '2026-08-21':'opt','2026-08-22':'opt','2026-08-23':'opt',
+    '2026-10-07':'opt','2026-10-08':'opt','2026-10-09':'opt','2026-10-10':'opt',
   }
+};
+
+// Veranstaltungsnamen für gebuchte Tage
+const EVENTS = {
+  '2026-07-15': 'Reifensteiner Rittertage, Sterzing (Südtirol)',
+  '2026-07-16': 'Reifensteiner Rittertage, Sterzing (Südtirol)',
+  '2026-07-17': 'Reifensteiner Rittertage, Sterzing (Südtirol)',
+  '2026-07-18': 'Reifensteiner Rittertage, Sterzing (Südtirol)',
+  '2026-07-19': 'Reifensteiner Rittertage, Sterzing (Südtirol)',
+  '2026-08-21': 'Südtiroler Rittertage, Schludens',
+  '2026-08-22': 'Südtiroler Rittertage, Schludens',
+  '2026-08-23': 'Südtiroler Rittertage, Schludens',
+  '2026-10-07': 'Keulenturnier auf der Sulzburg',
+  '2026-10-08': 'Keulenturnier auf der Sulzburg',
+  '2026-10-09': 'Keulenturnier auf der Sulzburg',
+  '2026-10-10': 'Keulenturnier auf der Sulzburg',
 };
 
 function fmtDate(y, m, d) {
@@ -1371,7 +1411,8 @@ function renderCal() {
     }
     if (ds === todayStr) cls += ' today';
     const ind = cls.includes('avail') ? '<div class="cal-indicator"></div>' : '';
-    html += `<div class="${cls}" onclick="selDay(this,'${ds}')"><span>${d}</span>${ind}</div>`;
+    const tooltip = cls.includes('booked') && EVENTS[ds] ? ` data-tooltip="${EVENTS[ds]}"` : '';
+    html += `<div class="${cls}"${tooltip} onclick="selDay(this,'${ds}')"><span>${d}</span>${ind}</div>`;
   }
   grid.innerHTML = html;
 }
