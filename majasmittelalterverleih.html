@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Majas Mittelalterverleih – Historisches Ambiente für Ihr Event</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream:       #F8EDD5;
+      --cream-mid:   #F0DEB8;
+      --cream-dark:  #E2C98A;
+      --gold:        #C8921E;
+      --gold-light:  #E5B040;
+      --gold-bright: #F2CA6A;
+      --gold-pale:   #F9E8B0;
+      --wine:        #7B1528;
+      --wine-dark:   #521020;
+      --wine-light:  #9D1E33;
+      --dark:        #1A0808;
+      --text:        #261008;
+      --text-mid:    #5C2A18;
+      --text-light:  #8C4828;
+      --shadow:      rgba(26,8,8,0.15);
+      --shadow-deep: rgba(26,8,8,0.35);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background-color: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVIGATION ────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.2rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: all 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(248,237,213,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--cream-dark);
+      box-shadow: 0 2px 24px var(--shadow);
+      padding: 0.75rem 3rem;
+    }
+    .nav-logo {
+      font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.05rem;
+      color: var(--cream); text-decoration: none; letter-spacing: 0.05em;
+      line-height: 1.2; display: flex; flex-direction: column;
+      transition: color 0.3s;
+    }
+    nav.scrolled .nav-logo { color: var(--wine); }
+    .nav-logo span {
+      font-size: 0.62rem; font-family: 'Cormorant Garamond', serif;
+      font-style: italic; color: var(--gold-bright); letter-spacing: 0.25em;
+    }
+    nav.scrolled .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Cinzel', serif; font-size: 0.7rem;
+      letter-spacing: 0.15em; color: rgba(248,237,213,0.85);
+      text-decoration: none; text-transform: uppercase;
+      transition: color 0.3s; position: relative;
+    }
+    nav.scrolled .nav-links a { color: var(--text-mid); }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 1px; background: var(--gold);
+      transform: scaleX(0); transition: transform 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold-bright) !important; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta {
+      background: var(--wine) !important; color: var(--cream) !important;
+      padding: 0.5rem 1.25rem;
+      border: 1px solid var(--wine-dark);
+    }
+    .nav-cta:hover { background: var(--wine-dark) !important; }
+    .nav-cta::after { display: none !important; }
+    .nav-burger {
+      display: none; background: none; border: none;
+      cursor: pointer; flex-direction: column; gap: 5px; padding: 4px;
+    }
+    .nav-burger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--cream); transition: all 0.3s;
+    }
+    nav.scrolled .nav-burger span { background: var(--wine); }
+
+    /* ── HERO ──────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      background:
+        radial-gradient(ellipse 120% 80% at 50% 110%, #3A0812 0%, transparent 60%),
+        radial-gradient(ellipse 70% 60% at 15% 15%, rgba(200,146,30,0.13) 0%, transparent 55%),
+        linear-gradient(160deg, #200A0F 0%, #3D1208 35%, #541A0E 65%, #301005 100%);
+    }
+    #hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(200,146,30,0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,146,30,0.055) 1px, transparent 1px);
+      background-size: 55px 55px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+    }
+    #hero::after {
+      content: ''; position: absolute; inset: 2rem;
+      border: 1px solid rgba(200,146,30,0.18); pointer-events: none;
+    }
+    .hero-content {
+      position: relative; text-align: center;
+      max-width: min(92vw, 1200px); padding: 4rem 2rem;
+    }
+    .hero-pre {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 1.05rem; color: var(--gold-bright);
+      letter-spacing: 0.45em; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 1s 0.2s both;
+    }
+    .hero-title {
+      font-family: 'Cinzel', serif; font-weight: 900;
+      font-size: clamp(2.2rem, 5.5vw, 5.5rem);
+      color: var(--cream); line-height: 1.05;
+      letter-spacing: 0.02em; margin-bottom: 0;
+      text-align: center; width: 100%;
+      animation: fadeUp 1s 0.3s both;
+    }
+    .hero-title-sub {
+      display: block; color: var(--gold-light);
+      text-align: center; width: 100%;
+      animation: fadeUp 1s 0.4s both;
+    }
+    .hero-divider {
+      display: flex; align-items: center; gap: 0.75rem;
+      justify-content: center; margin: 1.75rem auto;
+      width: 280px; animation: fadeUp 1s 0.45s both;
+    }
+    .hero-divider::before, .hero-divider::after {
+      content: ''; flex: 1; height: 1px;
+    }
+    .hero-divider::before { background: linear-gradient(90deg, transparent, var(--gold)); }
+    .hero-divider::after  { background: linear-gradient(90deg, var(--gold), transparent); }
+    .hero-divider-icon { color: var(--gold); font-size: 0.9rem; letter-spacing: 0.3em; }
+    .hero-sub {
+      font-size: 1.3rem; color: rgba(248,237,213,0.72);
+      font-style: italic; margin-bottom: 2.75rem;
+      letter-spacing: 0.04em; line-height: 1.6;
+      animation: fadeUp 1s 0.5s both;
+    }
+    .hero-btns {
+      display: flex; gap: 1.25rem; justify-content: center;
+      flex-wrap: wrap; animation: fadeUp 1s 0.65s both;
+    }
+    .btn-gold {
+      padding: 0.95rem 2.5rem; background: var(--gold);
+      color: var(--dark); font-family: 'Cinzel', serif;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; text-decoration: none;
+      border: 2px solid var(--gold); cursor: pointer;
+      transition: all 0.3s; display: inline-block;
+    }
+    .btn-gold:hover { background: var(--gold-light); border-color: var(--gold-light); }
+    .btn-outline {
+      padding: 0.95rem 2.5rem; background: transparent;
+      color: var(--cream); font-family: 'Cinzel', serif;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; text-decoration: none;
+      border: 1px solid rgba(248,237,213,0.38); cursor: pointer;
+      transition: all 0.3s; display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--cream); background: rgba(248,237,213,0.08); }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%;
+      transform: translateX(-50%); display: flex;
+      flex-direction: column; align-items: center; gap: 0.5rem;
+      color: rgba(248,237,213,0.4); font-family: 'Cinzel', serif;
+      font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase;
+      animation: fadeUp 1s 1s both;
+    }
+    .hero-scroll-line {
+      width: 1px; height: 44px;
+      background: linear-gradient(var(--gold), transparent);
+      animation: pulse 2.2s infinite;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 0.3; transform: scaleY(0.8); }
+      50%     { opacity: 0.9; transform: scaleY(1); }
+    }
+
+    /* ── SECTION COMMONS ───────────────────────────── */
+    section { padding: 6rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .sec-label {
+      display: block; text-align: center;
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 1rem; color: var(--gold);
+      letter-spacing: 0.45em; text-transform: uppercase; margin-bottom: 0.6rem;
+    }
+    .sec-title {
+      font-family: 'Cinzel', serif; font-size: clamp(1.8rem,4vw,2.9rem);
+      font-weight: 700; color: var(--wine); text-align: center;
+      letter-spacing: 0.02em; margin-bottom: 0.6rem;
+    }
+    .sec-sub {
+      font-size: 1.15rem; color: var(--text-mid); text-align: center;
+      max-width: 600px; margin: 0 auto 3rem; line-height: 1.75;
+      font-style: italic;
+    }
+    .ornament {
+      display: flex; align-items: center; gap: 1rem; margin: 1.5rem 0;
+    }
+    .ornament::before, .ornament::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .ornament span { color: var(--gold); font-size: 0.75rem; letter-spacing: 0.4em; }
+
+    /* ── GALLERY ───────────────────────────────────── */
+    #sortiment { background: var(--cream-mid); }
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 3px; margin-top: 1rem;
+    }
+    .gallery-card {
+      position: relative; overflow: hidden;
+      aspect-ratio: 3/4; cursor: pointer;
+    }
+    .gc-bg {
+      position: absolute; inset: 0;
+      transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .gallery-card:hover .gc-bg { transform: scale(1.06); }
+    .gc-bg.zelte {
+      background:
+        radial-gradient(ellipse 100% 80% at 50% 100%, #56190E 0%, #361007 40%, #190604 100%);
+    }
+    .gc-bg.deko {
+      background:
+        radial-gradient(ellipse 120% 100% at 30% 70%, #3C1808 0%, #180706 60%, #090303 100%);
+    }
+    .gc-bg.moebel {
+      background:
+        radial-gradient(ellipse 100% 120% at 70% 30%, #481710 0%, #28070A 50%, #110404 100%);
+    }
+    .gc-illustration {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      opacity: 0.12; width: 55%; max-width: 170px;
+      transition: opacity 0.5s; color: var(--gold);
+    }
+    .gallery-card:hover .gc-illustration { opacity: 0.06; }
+    .gc-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 2.5rem 1.75rem 1.75rem;
+      background: linear-gradient(transparent, rgba(8,2,2,0.92) 40%);
+      transform: translateY(8px); transition: transform 0.4s ease;
+    }
+    .gallery-card:hover .gc-content { transform: translateY(0); }
+    .gc-cat {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.82rem; color: var(--gold);
+      letter-spacing: 0.3em; text-transform: uppercase;
+      margin-bottom: 0.4rem; display: block;
+    }
+    .gc-title {
+      font-family: 'Cinzel', serif; font-size: 1.45rem;
+      color: var(--cream); margin-bottom: 0.6rem;
+    }
+    .gc-text {
+      font-size: 0.98rem; color: rgba(248,237,213,0.72);
+      line-height: 1.65; max-height: 0; overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    .gallery-card:hover .gc-text { max-height: 100px; }
+    .gc-tags {
+      display: flex; flex-wrap: wrap; gap: 0.35rem;
+      margin-top: 0.7rem; max-height: 0; overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    .gallery-card:hover .gc-tags { max-height: 80px; }
+    .gc-tag {
+      font-family: 'Cormorant Garamond', serif; font-size: 0.78rem;
+      padding: 0.18rem 0.55rem;
+      background: rgba(200,146,30,0.18); border: 1px solid rgba(200,146,30,0.28);
+      color: var(--gold-bright);
+    }
+    .gc-overlay {
+      position: absolute; inset: 0; z-index: 1;
+    }
+    .gc-link {
+      display: inline-block; margin-top: 0.85rem;
+      font-family: 'Cinzel', serif; font-size: 0.68rem;
+      letter-spacing: 0.2em; color: var(--gold-light);
+      text-decoration: none; text-transform: uppercase;
+      opacity: 0; transform: translateX(-8px);
+      transition: opacity 0.4s 0.1s, transform 0.4s 0.1s;
+    }
+    .gallery-card:hover .gc-link { opacity: 1; transform: translateX(0); }
+    .gc-link { position: relative; z-index: 2; }
+
+    /* ── PREISLISTE ────────────────────────────────── */
+    #preise {
+      background: #3A1208; position: relative; overflow: hidden;
+    }
+    #preise::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(200,146,30,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,146,30,0.04) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    #preise .sec-title  { color: var(--cream); }
+    #preise .sec-label  { color: var(--gold); }
+    #preise .sec-sub    { color: rgba(248,237,213,0.55); }
+    .price-tabs {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      border-bottom: 1px solid rgba(200,146,30,0.28);
+      margin-bottom: 3rem; position: relative;
+    }
+    .price-tab {
+      font-family: 'Cinzel', serif; font-size: 0.7rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(248,237,213,0.45); padding: 0.8rem 1.75rem;
+      cursor: pointer; border: none; background: none;
+      transition: color 0.3s;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+    }
+    .price-tab.active  { color: var(--gold); border-bottom-color: var(--gold); }
+    .price-tab:hover:not(.active) { color: rgba(248,237,213,0.78); }
+    .price-panel { display: none; }
+    .price-panel.active { display: block; }
+    .price-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr));
+      gap: 2px; background: rgba(200,146,30,0.18);
+    }
+    .price-card {
+      background: #2A0E08; padding: 2.5rem 2rem;
+      position: relative; transition: background 0.3s;
+    }
+    .price-card:hover { background: #351510; }
+    .price-card.featured { background: #6A1820; }
+    .price-badge {
+      position: absolute; top: -1px; right: 2rem;
+      background: var(--gold); color: var(--dark);
+      font-family: 'Cinzel', serif; font-size: 0.58rem;
+      letter-spacing: 0.15em; padding: 0.28rem 0.75rem;
+      text-transform: uppercase;
+    }
+    .price-name {
+      font-family: 'Cinzel', serif; font-size: 1.1rem;
+      color: var(--cream); margin-bottom: 0.35rem;
+    }
+    .price-desc {
+      font-style: italic; font-size: 0.92rem;
+      color: rgba(248,237,213,0.45); margin-bottom: 1.5rem;
+    }
+    .price-main {
+      display: flex; align-items: baseline; gap: 0.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .price-val {
+      font-family: 'Cinzel', serif; font-size: 2.4rem;
+      font-weight: 700; color: var(--gold);
+    }
+    .price-unit { font-size: 0.9rem; color: rgba(248,237,213,0.45); }
+    .price-feats { list-style: none; margin-bottom: 2rem; }
+    .price-feats li {
+      font-size: 1rem; color: rgba(248,237,213,0.72);
+      padding: 0.5rem 0; border-bottom: 1px solid rgba(200,146,30,0.1);
+      display: flex; gap: 0.75rem; align-items: center;
+    }
+    .price-feats li::before {
+      content: '◆'; color: var(--gold);
+      font-size: 0.42rem; flex-shrink: 0;
+    }
+    .price-btn {
+      display: block; width: 100%; text-align: center;
+      padding: 0.78rem 1.5rem;
+      border: 1px solid rgba(200,146,30,0.4); color: var(--gold);
+      font-family: 'Cinzel', serif; font-size: 0.68rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      background: none; cursor: pointer; transition: all 0.3s;
+    }
+    .price-btn:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+    .price-card.featured .price-btn {
+      background: var(--gold); color: var(--dark); border-color: var(--gold);
+    }
+    .price-card.featured .price-btn:hover {
+      background: var(--gold-light); border-color: var(--gold-light);
+    }
+    .price-footnote {
+      text-align: center; margin-top: 2rem;
+      font-style: italic; color: rgba(248,237,213,0.4); font-size: 0.92rem;
+    }
+
+    /* ── CALENDAR ──────────────────────────────────── */
+    #verfuegbarkeit { background: var(--cream); }
+    .cal-wrap {
+      display: grid; grid-template-columns: 265px 1fr; gap: 3rem;
+      align-items: start;
+    }
+    .cal-sidebar { position: sticky; top: 100px; }
+    .cal-sidebar-label {
+      font-family: 'Cinzel', serif; font-size: 0.68rem;
+      letter-spacing: 0.2em; color: var(--text-mid);
+      text-transform: uppercase; margin-bottom: 0.75rem;
+      display: block;
+    }
+    .item-opt {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.85rem 1.1rem; border: 1px solid var(--cream-dark);
+      background: white; margin-bottom: 0.4rem;
+      cursor: pointer; transition: all 0.3s;
+    }
+    .item-opt.active { background: var(--wine); border-color: var(--wine); color: var(--cream); }
+    .item-opt:hover:not(.active) { border-color: var(--gold); }
+    .item-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .item-name { font-family: 'Cinzel', serif; font-size: 0.78rem; }
+    .item-cap {
+      font-size: 0.82rem; font-style: italic; color: var(--text-light);
+      margin-left: auto;
+    }
+    .item-opt.active .item-cap { color: rgba(248,237,213,0.65); }
+    .cal-legend {
+      padding: 1.1rem 1.25rem; background: white;
+      border: 1px solid var(--cream-dark); margin-top: 1.25rem;
+    }
+    .legend-lbl {
+      font-family: 'Cinzel', serif; font-size: 0.63rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-mid); margin-bottom: 0.5rem; display: block;
+    }
+    .legend-row {
+      display: flex; align-items: center; gap: 0.7rem;
+      font-size: 0.92rem; color: var(--text-mid); padding: 0.25rem 0;
+    }
+    .leg-dot {
+      width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0;
+    }
+    .leg-dot.avail  { background: #4CAF50; }
+    .leg-dot.booked { background: #C62828; }
+    .leg-dot.opt    { background: #F5A623; }
+    .leg-dot.past   { background: #BDBDBD; }
+    .cal-cta-box {
+      margin-top: 1.25rem; padding: 1.25rem;
+      background: white; border: 1px solid var(--cream-dark);
+      border-left: 3px solid var(--wine);
+    }
+    .cal-cta-box h4 {
+      font-family: 'Cinzel', serif; font-size: 0.82rem;
+      color: var(--wine); margin-bottom: 0.5rem;
+    }
+    .cal-cta-box p {
+      font-size: 0.92rem; color: var(--text-mid);
+      line-height: 1.55; margin-bottom: 0.9rem;
+    }
+    /* calendar main */
+    .cal-nav {
+      display: flex; align-items: center;
+      justify-content: space-between; margin-bottom: 1.25rem;
+    }
+    .cal-nav-btn {
+      background: none; border: 1px solid var(--cream-dark);
+      width: 40px; height: 40px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-mid); font-size: 1.2rem; transition: all 0.3s;
+    }
+    .cal-nav-btn:hover { background: var(--wine); border-color: var(--wine); color: var(--cream); }
+    .cal-month-title {
+      font-family: 'Cinzel', serif; font-size: 1.25rem; color: var(--wine);
+    }
+    .cal-grid {
+      display: grid; grid-template-columns: repeat(7,1fr); gap: 3px;
+    }
+    .cal-hdr {
+      font-family: 'Cinzel', serif; font-size: 0.62rem;
+      letter-spacing: 0.15em; color: var(--text-light);
+      text-align: center; padding: 0.45rem 0; text-transform: uppercase;
+    }
+    .cal-day {
+      aspect-ratio: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      font-family: 'Cinzel', serif; font-size: 0.88rem;
+      cursor: pointer; transition: all 0.2s;
+      border: 1px solid transparent; position: relative;
+    }
+    .cal-day.empty  { cursor: default; }
+    .cal-day.past   { background: #F5F0E8; color: #BDBDBD; cursor: default; }
+    .cal-day.avail  { background: #E8F5E9; color: #1B5E20; border-color: #A5D6A7; }
+    .cal-day.avail:hover { background: #C8E6C9; transform: scale(1.06); z-index: 1; }
+    .cal-day.booked { background: #FFEBEE; color: #B71C1C; border-color: #EF9A9A; cursor: not-allowed; }
+    .cal-day.opt    { background: #FFF8E1; color: #E65100; border-color: #FFE082; }
+    .cal-day.opt:hover { background: #FFECB3; transform: scale(1.06); z-index: 1; }
+    .cal-day.today  { box-shadow: 0 0 0 2px var(--wine); }
+    .cal-day.sel    { box-shadow: 0 0 0 2px var(--gold); font-weight: 700; }
+    .cal-indicator  { width: 4px; height: 4px; border-radius: 50%; background: currentColor; opacity: 0.45; margin-top: 3px; }
+
+    /* ── KONTAKT ───────────────────────────────────── */
+    #kontakt {
+      background:
+        radial-gradient(ellipse 70% 55% at 85% 15%, rgba(123,21,37,0.07) 0%, transparent 55%),
+        var(--cream);
+    }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.65fr; gap: 5rem; align-items: start;
+    }
+    .contact-info-title {
+      font-family: 'Cinzel', serif; font-size: 1.25rem;
+      color: var(--wine); margin-bottom: 1.4rem;
+    }
+    .contact-info p {
+      font-size: 1.05rem; color: var(--text-mid);
+      line-height: 1.8; margin-bottom: 2rem; font-style: italic;
+    }
+    .contact-row {
+      display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.2rem;
+    }
+    .contact-icon {
+      width: 36px; height: 36px; background: var(--wine);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 0.85rem; flex-shrink: 0;
+    }
+    .contact-lbl {
+      font-family: 'Cinzel', serif; font-size: 0.62rem;
+      letter-spacing: 0.2em; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 0.22rem; display: block;
+    }
+    .contact-val { font-size: 1rem; color: var(--text); }
+    .contact-meta {
+      font-size: 0.95rem; color: var(--text-mid); line-height: 1.85;
+      font-style: italic; margin-top: 1.5rem;
+    }
+    .contact-meta strong { font-style: normal; color: var(--wine); }
+    /* form */
+    .form-group  { margin-bottom: 1.4rem; }
+    .form-row    { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-lbl {
+      display: block; font-family: 'Cinzel', serif;
+      font-size: 0.62rem; letter-spacing: 0.2em;
+      color: var(--wine); text-transform: uppercase; margin-bottom: 0.45rem;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; padding: 0.82rem 1rem;
+      background: white; border: 1px solid var(--cream-dark);
+      border-bottom: 2px solid var(--cream-dark);
+      font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+      color: var(--text); outline: none; transition: all 0.3s;
+      appearance: none;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-bottom-color: var(--wine); background: var(--cream);
+    }
+    .form-textarea { resize: vertical; min-height: 115px; line-height: 1.6; }
+    .form-checks {
+      display: grid; grid-template-columns: repeat(2,1fr); gap: 0.5rem;
+    }
+    .form-check {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.55rem 0.75rem; border: 1px solid var(--cream-dark);
+      background: white; cursor: pointer; transition: all 0.3s;
+    }
+    .form-check:hover { border-color: var(--wine); }
+    .form-check input { width: 14px; height: 14px; accent-color: var(--wine); }
+    .form-check span  { font-size: 0.9rem; color: var(--text-mid); }
+    .form-submit {
+      display: block; width: 100%; padding: 1rem 3rem;
+      background: var(--wine); color: var(--cream);
+      font-family: 'Cinzel', serif; font-size: 0.72rem;
+      font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+      border: 2px solid var(--wine); cursor: pointer;
+      transition: all 0.3s; margin-top: 0.5rem;
+    }
+    .form-submit:hover { background: var(--wine-dark); border-color: var(--wine-dark); }
+    .form-note {
+      text-align: center; font-size: 0.83rem; font-style: italic;
+      color: var(--text-light); margin-top: 0.75rem;
+    }
+
+    /* ── FOOTER ────────────────────────────────────── */
+    footer { background: var(--dark); padding: 3.5rem 0 2rem; position: relative; }
+    footer::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(200,146,30,0.14);
+      margin-bottom: 2rem;
+    }
+    .footer-logo {
+      font-family: 'Cinzel', serif; font-size: 1.15rem;
+      font-weight: 700; color: var(--cream); margin-bottom: 0.2rem;
+    }
+    .footer-tag {
+      font-style: italic; font-size: 0.9rem;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .footer-desc { font-size: 0.92rem; color: rgba(248,237,213,0.45); line-height: 1.75; }
+    .footer-col-lbl {
+      font-family: 'Cinzel', serif; font-size: 0.67rem;
+      letter-spacing: 0.22em; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 1.2rem; display: block;
+    }
+    .footer-ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .footer-ul a {
+      font-size: 0.92rem; color: rgba(248,237,213,0.5);
+      text-decoration: none; transition: color 0.3s;
+    }
+    .footer-ul a:hover { color: var(--gold); }
+    .footer-btm {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 0.5rem;
+      font-size: 0.78rem; color: rgba(248,237,213,0.28);
+    }
+    .footer-btm a {
+      color: rgba(248,237,213,0.28); text-decoration: none; transition: color 0.3s;
+    }
+    .footer-btm a:hover { color: var(--gold); }
+
+
+    /* ── KALENDER RANGE-AUSWAHL ── */
+    .cal-day.range-start { box-shadow: 0 0 0 2px var(--wine); border-radius: 3px 0 0 3px; }
+    .cal-day.range-end   { box-shadow: 0 0 0 2px var(--wine); border-radius: 0 3px 3px 0; }
+    .cal-day.range-mid   { background: rgba(123,21,40,0.12) !important; }
+    .cal-day.range-start.range-end { border-radius: 3px; }
+    .cal-hint {
+      text-align: center; margin-top: 0.75rem;
+      font-size: 0.9rem; font-style: italic; color: var(--text-light);
+    }
+    .cal-range-info {
+      margin-top: 0.85rem; padding: 0.75rem 1rem;
+      background: var(--cream-mid); border: 1px solid var(--cream-dark);
+      border-left: 3px solid var(--wine);
+      font-size: 0.92rem; color: var(--text-mid); display: none;
+    }
+    .cal-range-info.visible { display: block; }
+    .cal-range-info strong { color: var(--wine); font-style: normal; }
+    .cal-range-warn {
+      color: #C62828; background: #FFEBEE;
+      border-color: #EF9A9A; border-left-color: #C62828;
+    }
+
+    /* ── SCROLL REVEAL ─────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+
+    /* ── VERFÜGBARKEITS-BADGES IM FORMULAR ── */
+    .avail-badge {
+      font-family: 'Cinzel', serif; font-size: 0.58rem;
+      letter-spacing: 0.1em; padding: 0.15rem 0.5rem;
+      margin-left: auto; border-radius: 2px; flex-shrink: 0;
+    }
+    .avail-badge.frei  { background: #E8F5E9; color: #2E7D32; border: 1px solid #A5D6A7; }
+    .avail-badge.belegt { background: #FFEBEE; color: #C62828; border: 1px solid #EF9A9A; }
+    .avail-badge.opt   { background: #FFF8E1; color: #E65100; border: 1px solid #FFE082; }
+    .form-check.unavailable {
+      opacity: 0.55; pointer-events: none;
+      border-color: #EF9A9A; background: #FFF5F5;
+    }
+    .form-check.unavailable input { cursor: not-allowed; }
+    .form-check.available { border-color: #A5D6A7; }
+    .form-date-hint {
+      font-size: 0.88rem; font-style: italic; color: var(--text-light);
+      margin-top: 0.4rem; display: block;
+    }
+
+    /* ── TOAST ─────────────────────────────────────── */
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem;
+      padding: 1rem 1.5rem; background: var(--wine);
+      color: var(--cream); font-family: 'Cinzel', serif;
+      font-size: 0.78rem; letter-spacing: 0.1em;
+      border-left: 3px solid var(--gold);
+      transform: translateX(130%); transition: transform 0.4s ease;
+      z-index: 9999; max-width: 320px;
+    }
+    .toast.show { transform: translateX(0); }
+
+    /* ── RESPONSIVE ────────────────────────────────── */
+    @media (max-width: 960px) {
+      nav { padding: 1rem 1.5rem; }
+      nav.scrolled { padding: 0.75rem 1.5rem; }
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-card { aspect-ratio: 16/9; }
+      .cal-wrap { grid-template-columns: 1fr; }
+      .cal-sidebar { position: static; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 4rem 0; }
+      .form-row   { grid-template-columns: 1fr; }
+      .form-checks { grid-template-columns: 1fr; }
+      .price-grid { grid-template-columns: 1fr; }
+      #hero::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ NAVIGATION ═══════════════ -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    Majas Mittelalterverleih
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#sortiment">Sortiment</a></li>
+    <li><a href="#preise">Preise</a></li>
+    <li><a href="#verfuegbarkeit">Verfügbarkeit</a></li>
+    <li><a href="#kontakt" class="nav-cta">Anfrage stellen</a></li>
+  </ul>
+  <button class="nav-burger" id="burger" aria-label="Menü" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section id="hero">
+  <div class="hero-content">
+    <p class="hero-pre">♦&nbsp; Historisches Ambiente &nbsp;♦</p>
+    <h1 class="hero-title">
+      Majas
+      <span class="hero-title-sub">Mittelalterverleih</span>
+    </h1>
+    <div class="hero-divider">
+      <span class="hero-divider-icon">❧ ❧ ❧</span>
+    </div>
+    <p class="hero-sub">
+      Zelte · Deko · Markt-Pakete<br>
+      für Märkte, Hochzeiten &amp; unvergessliche Events
+    </p>
+    <div class="hero-btns">
+      <a href="#sortiment" class="btn-gold">Sortiment entdecken</a>
+      <a href="#kontakt"   class="btn-outline">Unverbindlich anfragen</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    Entdecken
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════ SORTIMENT ═══════════════ -->
+<section id="sortiment">
+  <div class="container">
+    <span class="sec-label reveal">— Unser Angebot —</span>
+    <h2 class="sec-title reveal">Sortiment</h2>
+    <p class="sec-sub reveal">
+      Historische Zelte, stimmungsvolle Deko und maßgeschneiderte Markt-Pakete — alles aus einer Hand für euer unvergessliches Event.
+    </p>
+
+    <div class="gallery-grid reveal">
+
+      <!-- ZELTE -->
+      <div class="gallery-card">
+        <a href="zelte.html" class="gc-overlay" aria-label="Alle Zelte ansehen"></a>
+        <div class="gc-bg zelte"></div>
+        <svg class="gc-illustration" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 22L18 162h164Z" stroke="currentColor" stroke-width="2.5" fill="none"/>
+          <path d="M100 22v140" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M58 162l22-65 20-38 20 38 22 65" stroke="currentColor" stroke-width="1.4" fill="none"/>
+          <line x1="28" y1="148" x2="8" y2="178" stroke="currentColor" stroke-width="1.4"/>
+          <line x1="172" y1="148" x2="192" y2="178" stroke="currentColor" stroke-width="1.4"/>
+          <circle cx="100" cy="22" r="5" fill="currentColor" opacity="0.5"/>
+        </svg>
+        <div class="gc-content">
+          <span class="gc-cat">Kategorie 01</span>
+          <h3 class="gc-title">Zelte</h3>
+          <p class="gc-text">Marktzelt, Ritterzelt und Rundzelte — für Mittelaltermärkte, Hochzeiten und Feste. Ab 50 € pro Wochenende.</p>
+          <div class="gc-tags">
+            <span class="gc-tag">Marktzelt</span>
+            <span class="gc-tag">Ritterzelt</span>
+            <span class="gc-tag">Rundzelt</span>
+          </div>
+          <a href="zelte.html" class="gc-link">Alle Zelte ansehen →</a>
+        </div>
+      </div>
+
+      <!-- DEKO -->
+      <div class="gallery-card">
+        <a href="deko.html" class="gc-overlay" aria-label="Deko ansehen"></a>
+        <div class="gc-bg deko"></div>
+        <svg class="gc-illustration" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="70" stroke="currentColor" stroke-width="2"/>
+          <circle cx="100" cy="100" r="48" stroke="currentColor" stroke-width="1.4" stroke-dasharray="4 4"/>
+          <path d="M100 30l14 38h40l-32 24 12 38-34-24-34 24 12-38L46 68h40Z"
+                stroke="currentColor" stroke-width="1.4" fill="none"/>
+          <circle cx="100" cy="100" r="7" fill="currentColor" opacity="0.4"/>
+        </svg>
+        <div class="gc-content">
+          <span class="gc-cat">Kategorie 02</span>
+          <h3 class="gc-title">Deko</h3>
+          <p class="gc-text">Felle, Kochutensilien und Stühle als stimmungsvolles Zusatzpaket — perfekt für ein echtes Lagerfeeling.</p>
+          <div class="gc-tags">
+            <span class="gc-tag">Schaffelle</span>
+            <span class="gc-tag">Kuhfelle</span>
+            <span class="gc-tag">Kochutensilien</span>
+            <span class="gc-tag">Stühle</span>
+          </div>
+          <a href="deko.html" class="gc-link">Deko-Paket ansehen →</a>
+        </div>
+      </div>
+
+      <!-- MÖBEL -->
+      <div class="gallery-card">
+        <a href="#preise" class="gc-overlay" aria-label="Markt-Pakete ansehen" onclick="event.preventDefault(); openTab('paket')"></a>
+        <div class="gc-bg moebel"></div>
+        <svg class="gc-illustration" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="28" y="115" width="144" height="14" stroke="currentColor" stroke-width="2"/>
+          <rect x="38" y="78" width="48" height="37" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="114" y="78" width="48" height="37" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="44"  y1="129" x2="44"  y2="162" stroke="currentColor" stroke-width="2"/>
+          <line x1="80"  y1="129" x2="80"  y2="162" stroke="currentColor" stroke-width="2"/>
+          <line x1="120" y1="129" x2="120" y2="162" stroke="currentColor" stroke-width="2"/>
+          <line x1="156" y1="129" x2="156" y2="162" stroke="currentColor" stroke-width="2"/>
+          <path d="M58 78l42-32 42 32" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="100" cy="46" r="4" fill="currentColor" opacity="0.4"/>
+        </svg>
+        <div class="gc-content">
+          <span class="gc-cat">Kategorie 03</span>
+          <h3 class="gc-title">Markt-Pakete</h3>
+          <p class="gc-text">Mehrere Zelte kombiniert, optional mit Deko-Paket — ideal für große Märkte, Festivals und mehrtägige Events.</p>
+          <div class="gc-tags">
+            <span class="gc-tag">2+ Zelte</span>
+            <span class="gc-tag">+ Deko optional</span>
+            <span class="gc-tag">Auf Anfrage</span>
+          </div>
+          <a href="#preise" class="gc-link" onclick="event.preventDefault(); openTab('paket')">Pakete ansehen →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PREISLISTE ═══════════════ -->
+<section id="preise">
+  <div class="container">
+    <span class="sec-label reveal">— Transparente Preise —</span>
+    <h2 class="sec-title reveal">Preisliste</h2>
+    <p class="sec-sub reveal">
+      Alle Preise gelten pro Wochenende (Fr–Mo). Abholung in Absprache — kein Transportservice.
+    </p>
+
+    <div class="price-tabs reveal">
+      <button class="price-tab active" data-tab="zelte">Zelte</button>
+      <button class="price-tab" data-tab="deko">Deko-Paket</button>
+      <button class="price-tab" data-tab="paket">Markt-Pakete</button>
+    </div>
+
+    <!-- ZELTE -->
+    <div class="price-panel active" id="tab-zelte">
+      <div class="price-grid">
+        <div class="price-card">
+          <h3 class="price-name">Rundzelt</h3>
+          <p class="price-desc">Klein &amp; charmant · weiß</p>
+          <div class="price-main"><span class="price-val">50 €</span><span class="price-unit">&nbsp;/ Wochenende</span></div>
+          <ul class="price-feats">
+            <li>Fr bis Mo (4 Tage)</li>
+            <li>Weißes Leinenzelt</li>
+            <li>2 Stück verfügbar</li>
+            <li>Kaution: 100 €</li>
+          </ul>
+          <button class="price-btn" onclick="anfragen('rundzelt')">Jetzt anfragen</button>
+        </div>
+        <div class="price-card featured">
+          <span class="price-badge">Beliebt</span>
+          <h3 class="price-name">Marktzelt</h3>
+          <p class="price-desc">Stattlich &amp; auffällig · blau-weiß</p>
+          <div class="price-main"><span class="price-val">100 €</span><span class="price-unit">&nbsp;/ Wochenende</span></div>
+          <ul class="price-feats">
+            <li>Fr bis Mo (4 Tage)</li>
+            <li>Blau-weißes Marktzelt</li>
+            <li>Ideal für Händler &amp; Märkte</li>
+            <li>Kaution: 150 €</li>
+          </ul>
+          <button class="price-btn" onclick="anfragen('marktzelt')">Jetzt anfragen</button>
+        </div>
+        <div class="price-card">
+          <h3 class="price-name">Ritterzelt</h3>
+          <p class="price-desc">Edel &amp; historisch · grün-weiß</p>
+          <div class="price-main"><span class="price-val">100 €</span><span class="price-unit">&nbsp;/ Wochenende</span></div>
+          <ul class="price-feats">
+            <li>Fr bis Mo (4 Tage)</li>
+            <li>Grün-weißes Ritterzelt</li>
+            <li>Perfekt für Feste &amp; Hochzeiten</li>
+            <li>Kaution: 150 €</li>
+          </ul>
+          <button class="price-btn" onclick="anfragen('ritterzelt')">Jetzt anfragen</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEKO & STÜHLE -->
+    <div class="price-panel" id="tab-deko">
+      <div class="price-grid" style="grid-template-columns: 1fr 1fr; max-width: 720px; margin: 0 auto;">
+        <div class="price-card featured" style="grid-column: 1 / -1;">
+          <span class="price-badge">Zusatzpaket</span>
+          <h3 class="price-name">Deko-Paket</h3>
+          <p class="price-desc">Das perfekte Ambiente-Upgrade zu jedem Zelt</p>
+          <div class="price-main"><span class="price-val">50 €</span><span class="price-unit">&nbsp;/ Wochenende</span></div>
+          <ul class="price-feats" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0;">
+            <li>Schaffelle &amp; Kuhfelle</li>
+            <li>Feuerschale</li>
+            <li>Dreibein (hängend &amp; stehend)</li>
+            <li>Kochtopf &amp; Pfanne</li>
+            <li>Mittelalterstühle</li>
+          </ul>
+          <button class="price-btn" onclick="anfragen('deko')" style="max-width: 320px; margin: 0 auto;">Zum Zelt dazubuchen</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARKT-PAKET -->
+    <div class="price-panel" id="tab-paket">
+      <div class="price-grid" style="grid-template-columns: repeat(auto-fit, minmax(270px,1fr));">
+        <div class="price-card">
+          <h3 class="price-name">Duo-Paket</h3>
+          <p class="price-desc">2 Zelte nach Wahl</p>
+          <div class="price-main"><span class="price-val">ab 150 €</span><span class="price-unit">&nbsp;/ Wochenende</span></div>
+          <ul class="price-feats">
+            <li>2 Zelte frei wählbar</li>
+            <li>z. B. 2× Rundzelt</li>
+            <li>Deko-Paket optional +50 €</li>
+            <li>Kaution je Zelt</li>
+          </ul>
+          <button class="price-btn" onclick="anfragen('duo')">Jetzt anfragen</button>
+        </div>
+        <div class="price-card featured">
+          <span class="price-badge">Empfohlen</span>
+          <h3 class="price-name">Markt-Paket</h3>
+          <p class="price-desc">Großes Zelt + 2 Rundzelte</p>
+          <div class="price-main"><span class="price-val">ab 250 €</span><span class="price-unit">&nbsp;/ Wochenende</span></div>
+          <ul class="price-feats">
+            <li>Marktzelt oder Ritterzelt</li>
+            <li>2× Rundzelt</li>
+            <li>Deko-Paket optional +50 €</li>
+            <li>Ideal für große Märkte</li>
+          </ul>
+          <button class="price-btn" onclick="anfragen('marktpaket')">Jetzt anfragen</button>
+        </div>
+        <div class="price-card">
+          <h3 class="price-name">Individuell</h3>
+          <p class="price-desc">Wunschzusammenstellung</p>
+          <div class="price-main"><span class="price-val">auf Anfrage</span></div>
+          <ul class="price-feats">
+            <li>Alle 4 Zelte kombinierbar</li>
+            <li>Deko-Paket optional</li>
+            <li>Mehrtägige Events möglich</li>
+            <li>Persönliche Beratung</li>
+          </ul>
+          <button class="price-btn" onclick="anfragen('individuell')">Jetzt anfragen</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="price-footnote reveal">* Alle Preise pro Wochenende (Fr–Mo). Kaution wird bei Rückgabe vollständig erstattet. Nur Selbstabholung.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ VERFÜGBARKEIT ═══════════════ -->
+<section id="verfuegbarkeit">
+  <div class="container">
+    <span class="sec-label reveal">— Planung &amp; Buchung —</span>
+    <h2 class="sec-title reveal">Verfügbarkeit prüfen</h2>
+    <p class="sec-sub reveal">Prüfen Sie die Verfügbarkeit unserer Zelte und Pakete für Ihr Wunschdatum.</p>
+
+    <div class="cal-wrap reveal">
+      <!-- Sidebar -->
+      <div class="cal-sidebar">
+        <span class="cal-sidebar-label">Artikel wählen</span>
+
+        <div class="item-opt active" data-item="marktzelt" onclick="selectItem(this)">
+          <div class="item-dot" style="background:#1A4B8C"></div>
+          <span class="item-name">Marktzelt</span>
+          <span class="item-cap">blau-weiß</span>
+        </div>
+        <div class="item-opt" data-item="ritterzelt" onclick="selectItem(this)">
+          <div class="item-dot" style="background:#2E7D32"></div>
+          <span class="item-name">Ritterzelt</span>
+          <span class="item-cap">grün-weiß</span>
+        </div>
+        <div class="item-opt" data-item="rundzelt1" onclick="selectItem(this)">
+          <div class="item-dot" style="background:#C8921E"></div>
+          <span class="item-name">Rundzelt 1</span>
+          <span class="item-cap">weiß</span>
+        </div>
+        <div class="item-opt" data-item="rundzelt2" onclick="selectItem(this)">
+          <div class="item-dot" style="background:#7B1528"></div>
+          <span class="item-name">Rundzelt 2</span>
+          <span class="item-cap">weiß</span>
+        </div>
+
+        <div class="cal-legend">
+          <span class="legend-lbl">Legende</span>
+          <div class="legend-row"><div class="leg-dot avail"></div>Verfügbar</div>
+          <div class="legend-row"><div class="leg-dot opt"></div>Angefragt / Option</div>
+          <div class="legend-row"><div class="leg-dot booked"></div>Gebucht / Belegt</div>
+          <div class="legend-row"><div class="leg-dot past"></div>Vergangen</div>
+        </div>
+
+        <div class="cal-cta-box">
+          <h4>📅 Wunschdatum gefunden?</h4>
+          <p>Stellen Sie eine unverbindliche Anfrage — wir melden uns innerhalb von 24 Stunden.</p>
+          <button class="price-btn" onclick="goTo('kontakt')" style="font-size:0.65rem">Anfrage stellen</button>
+        </div>
+      </div>
+
+      <!-- Calendar -->
+      <div>
+        <div class="cal-nav">
+          <button class="cal-nav-btn" onclick="changeMonth(-1)">&#8249;</button>
+          <h3 class="cal-month-title" id="monthTitle"></h3>
+          <button class="cal-nav-btn" onclick="changeMonth(1)">&#8250;</button>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+        <p class="cal-hint" id="calHint">1. Klick: Startdatum &nbsp;·&nbsp; 2. Klick: Enddatum</p>
+        <div class="cal-range-info" id="calRangeInfo"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ KONTAKT ═══════════════ -->
+<section id="kontakt">
+  <div class="container">
+    <span class="sec-label reveal">— Wir freuen uns auf Sie —</span>
+    <h2 class="sec-title reveal">Anfrage &amp; Kontakt</h2>
+    <p class="sec-sub reveal">
+      Teilen Sie uns Ihr Vorhaben mit — wir erstellen gerne ein maßgeschneidertes Angebot für Ihr Event.
+    </p>
+
+    <div class="contact-grid">
+      <div class="reveal">
+        <h3 class="contact-info-title">Gut zu wissen</h3>
+        <p style="margin-bottom: 2rem;">
+          Jede Veranstaltung ist einzigartig. Wir beraten Sie persönlich — von der ersten Idee bis zum letzten Wimpel.
+        </p>
+
+        <div class="contact-row">
+          <div class="contact-icon">✉</div>
+          <div>
+            <span class="contact-lbl">E-Mail</span>
+            <span class="contact-val">majasmittelalterverleih@gmail.com</span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">☎</div>
+          <div>
+            <span class="contact-lbl">Telefon</span>
+            <a href="tel:+491713420614" class="contact-val" style="color:inherit;text-decoration:none;">+49 171 3420614</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">⊕</div>
+          <div>
+            <span class="contact-lbl">Webseite</span>
+            <span class="contact-val">majasmittelalterverleih.de</span>
+          </div>
+        </div>
+
+        <div class="ornament" style="margin-top:1.75rem"><span>♦ ♦ ♦</span></div>
+
+        <div class="contact-meta">
+          Antwortzeit: <strong>innerhalb von 24 Stunden</strong><br>
+          Stornierungsfrist: min. <strong>7 Tage</strong> vor dem Event<br>
+          Verspätete Rückgabe: <strong>30 € / Tag</strong><br>
+          Abholort: <strong>87459 Pfronten-Weißbach</strong>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-lbl">Vorname *</label>
+            <input type="text" class="form-input" placeholder="Euer Vorname">
+          </div>
+          <div class="form-group">
+            <label class="form-lbl">Nachname *</label>
+            <input type="text" class="form-input" placeholder="Euer Nachname">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-lbl">E-Mail *</label>
+            <input type="email" class="form-input" placeholder="eure@email.de">
+          </div>
+          <div class="form-group">
+            <label class="form-lbl">Telefon</label>
+            <input type="tel" class="form-input" placeholder="+49 …">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-lbl">Veranstaltungsdatum *</label>
+            <input type="date" class="form-input" id="eventDate" onchange="checkAvailability(this.value)">
+            <span class="form-date-hint" id="dateHint">Datum wählen → Verfügbarkeit wird automatisch geprüft</span>
+          </div>
+          <div class="form-group">
+            <label class="form-lbl">Veranstaltungsort</label>
+            <input type="text" class="form-input" placeholder="Ort / PLZ">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-lbl">Gewünschte Artikel</label>
+          <div class="form-checks">
+            <label class="form-check" id="check-marktzelt"><input type="checkbox" data-item="marktzelt"><span>Marktzelt (blau-weiß)</span><span class="avail-badge" id="badge-marktzelt"></span></label>
+            <label class="form-check" id="check-ritterzelt"><input type="checkbox" data-item="ritterzelt"><span>Ritterzelt (grün-weiß)</span><span class="avail-badge" id="badge-ritterzelt"></span></label>
+            <label class="form-check" id="check-rundzelt"><input type="checkbox" data-item="rundzelt"><span>Rundzelt (weiß)</span><span class="avail-badge" id="badge-rundzelt"></span></label>
+            <label class="form-check" id="check-deko"><input type="checkbox" data-item="deko"><span>Deko-Paket (+50 €)</span></label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-lbl">Eure Nachricht *</label>
+          <textarea class="form-textarea" placeholder="Beschreibt kurz Euer Event, die Anzahl der Gäste und besondere Wünsche …"></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">Unverbindliche Anfrage senden</button>
+        <p class="form-note">* Pflichtfelder &nbsp;·&nbsp; Wir antworten innerhalb von 24 Stunden</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Majas Mittelalterverleih</div>
+        <div class="footer-tag">Historisches Ambiente für unvergessliche Events</div>
+        <p class="footer-desc">
+          Zelte, Deko, Möbel und Requisiten für Mittelaltermärkte, Hochzeiten, Stadtfeste und mehr — aus Leidenschaft für Geschichte und authentisches Ambiente.
+        </p>
+      </div>
+      <div>
+        <span class="footer-col-lbl">Navigation</span>
+        <ul class="footer-ul">
+          <li><a href="#sortiment">Sortiment</a></li>
+          <li><a href="#preise">Preisliste</a></li>
+          <li><a href="#verfuegbarkeit">Verfügbarkeit</a></li>
+          <li><a href="#kontakt">Kontakt &amp; Anfrage</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="footer-col-lbl">Rechtliches</span>
+        <ul class="footer-ul">
+          <li><a href="#">Impressum</a></li>
+          <li><a href="#">Datenschutz</a></li>
+          <li><a href="#">AGB</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-btm">
+      <span>© 2026 Majas Mittelalterverleih · Alle Rechte vorbehalten</span>
+      <span>
+        <a href="https://majasmittelalterverleih.de">majasmittelalterverleih.de</a>
+        &nbsp;·&nbsp;
+        <a href="https://majasmittelalterverleih.com">majasmittelalterverleih.com</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── NAV ──────────────────────────────────────────
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 80);
+});
+function toggleMenu() {
+  const nl = document.getElementById('navLinks');
+  nl.style.display = nl.style.display === 'flex' ? 'none' : 'flex';
+  nl.style.flexDirection = 'column';
+  nl.style.position = 'absolute';
+  nl.style.top = '100%'; nl.style.left = '0'; nl.style.right = '0';
+  nl.style.background = 'rgba(248,237,213,0.97)';
+  nl.style.padding = '1rem 1.5rem 1.5rem';
+}
+
+// ── ANFRAGEN (Formular vorausfüllen) ─────────────────
+function anfragen(produkt) {
+  // Alle Checkboxen zurücksetzen
+  document.querySelectorAll('.form-check input').forEach(cb => cb.checked = false);
+
+  const config = {
+    rundzelt: {
+      checks: ['Rundzelt'],
+      msg: 'Ich möchte gerne ein Rundzelt (weiß, ca. ø 3,5 m) für ein Wochenende buchen.\n\nGeschätzter Preis: 50 € + 100 € Kaution\nNur Selbstabholung: 87459 Pfronten-Weißbach'
+    },
+    marktzelt: {
+      checks: ['Marktzelt'],
+      msg: 'Ich möchte gerne das Marktzelt (blau-weiß, ca. 4×4 m) für ein Wochenende buchen.\n\nGeschätzter Preis: 100 € + 150 € Kaution\nNur Selbstabholung: 87459 Pfronten-Weißbach'
+    },
+    ritterzelt: {
+      checks: ['Ritterzelt'],
+      msg: 'Ich möchte gerne das Ritterzelt (grün-weiß, ca. ø 4 m) für ein Wochenende buchen.\n\nGeschätzter Preis: 100 € + 150 € Kaution\nNur Selbstabholung: 87459 Pfronten-Weißbach'
+    },
+    deko: {
+      checks: ['Deko-Paket'],
+      msg: 'Ich möchte das Deko-Paket (Felle, Kochutensilien, Stühle) zusätzlich zu einem Zelt buchen.\n\nGeschätzter Preis: +50 €'
+    },
+    duo: {
+      checks: ['Rundzelt'],
+      msg: 'Ich interessiere mich für das Duo-Paket (2 Rundzelte) für ein Wochenende.\n\nGeschätzter Preis: ab 100 € (2× Rundzelt à 50 €) + je 100 € Kaution\nOptional: Deko-Paket +50 € (keine Kaution)\nNur Selbstabholung: 87459 Pfronten-Weißbach'
+    },
+    marktpaket: {
+      checks: ['Marktzelt', 'Rundzelt'],
+      msg: 'Ich interessiere mich für das Markt-Paket: 1 großes Zelt + 2 Rundzelte für ein Wochenende.\n\nGeschätzter Preis: ab 200 € (Marktzelt 100 € + 2× Rundzelt à 50 €)\nKaution: 150 € + 2× 100 €\nOptional: Deko-Paket +50 € (+100 € Kaution)\nNur Selbstabholung: 87459 Pfronten-Weißbach'
+    },
+    individuell: {
+      checks: [],
+      msg: 'Ich möchte eine individuelle Zusammenstellung anfragen und bitte um ein persönliches Angebot.\n\nMeine Wünsche:'
+    }
+  };
+
+  const c = config[produkt];
+  if (c) {
+    document.querySelectorAll('.form-check').forEach(label => {
+      const span = label.querySelector('span');
+      const cb = label.querySelector('input');
+      if (c.checks.some(name => span && span.textContent.includes(name))) {
+        cb.checked = true;
+      }
+    });
+    const ta = document.querySelector('.form-textarea');
+    if (ta && c.msg) ta.value = c.msg;
+  }
+
+  document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' });
+}
+
+
+function openTab(tabName) {
+  document.querySelectorAll('.price-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.price-panel').forEach(p => p.classList.remove('active'));
+  const tab = document.querySelector('.price-tab[data-tab="' + tabName + '"]');
+  const panel = document.getElementById('tab-' + tabName);
+  if (tab) tab.classList.add('active');
+  if (panel) panel.classList.add('active');
+  document.getElementById('preise').scrollIntoView({ behavior: 'smooth' });
+}
+
+function goTo(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+// ── REVEAL ───────────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      e.target.style.transitionDelay = (i * 0.04) + 's';
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ── PRICE TABS ───────────────────────────────────
+document.querySelectorAll('.price-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.price-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.price-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// ── CALENDAR ─────────────────────────────────────
+const today = new Date();
+let curMonth = today.getMonth();
+let curYear  = today.getFullYear();
+let selItem  = 'marktzelt';
+
+const MONTHS = ['Januar','Februar','März','April','Mai','Juni',
+                'Juli','August','September','Oktober','November','Dezember'];
+const DAYS   = ['Mo','Di','Mi','Do','Fr','Sa','So'];
+
+// Demo-Belegungsdaten (bitte durch echte Daten ersetzen)
+const AVAIL = {
+  marktzelt: {
+    '2026-06-07':'booked','2026-06-08':'booked','2026-06-14':'opt',
+    '2026-06-21':'booked','2026-06-22':'booked',
+    '2026-07-04':'booked','2026-07-05':'booked','2026-07-11':'opt',
+    '2026-07-19':'booked','2026-07-26':'opt',
+    '2026-08-01':'booked','2026-08-02':'booked','2026-08-15':'opt',
+  },
+  ritterzelt: {
+    '2026-06-13':'booked','2026-06-14':'booked','2026-06-15':'booked',
+    '2026-06-28':'opt',
+    '2026-07-11':'booked','2026-07-12':'booked','2026-07-25':'opt',
+    '2026-07-26':'booked',
+    '2026-08-08':'booked','2026-08-09':'booked','2026-08-22':'opt',
+  },
+  rundzelt1: {
+    '2026-06-20':'booked','2026-06-21':'booked',
+    '2026-07-04':'opt','2026-07-18':'booked','2026-07-19':'booked',
+    '2026-08-01':'booked','2026-08-15':'opt',
+  },
+  rundzelt2: {
+    '2026-06-13':'booked','2026-06-14':'booked','2026-06-27':'opt',
+    '2026-07-11':'booked','2026-07-12':'booked',
+    '2026-07-25':'booked','2026-08-08':'booked',
+  }
+};
+
+function fmtDate(y, m, d) {
+  return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+}
+
+function renderCal() {
+  document.getElementById('monthTitle').textContent = `${MONTHS[curMonth]} ${curYear}`;
+  const grid = document.getElementById('calGrid');
+  const first = new Date(curYear, curMonth, 1).getDay();
+  const pad   = first === 0 ? 6 : first - 1;
+  const days  = new Date(curYear, curMonth + 1, 0).getDate();
+  const data  = AVAIL[selItem] || {};
+  const todayStr = fmtDate(today.getFullYear(), today.getMonth(), today.getDate());
+
+  let html = DAYS.map(d => `<div class="cal-hdr">${d}</div>`).join('');
+  for (let i = 0; i < pad; i++) html += `<div class="cal-day empty"></div>`;
+
+  for (let d = 1; d <= days; d++) {
+    const ds  = fmtDate(curYear, curMonth, d);
+    const cd  = new Date(curYear, curMonth, d);
+    const now = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    let cls   = 'cal-day';
+    if (cd < now) {
+      cls += ' past';
+    } else {
+      const s = data[ds];
+      cls += s === 'booked' ? ' booked' : s === 'opt' ? ' opt' : ' avail';
+    }
+    if (ds === todayStr) cls += ' today';
+    const ind = cls.includes('avail') ? '<div class="cal-indicator"></div>' : '';
+    html += `<div class="${cls}" onclick="selDay(this,'${ds}')"><span>${d}</span>${ind}</div>`;
+  }
+  grid.innerHTML = html;
+}
+
+function changeMonth(d) {
+  curMonth += d;
+  if (curMonth > 11) { curMonth = 0; curYear++; }
+  if (curMonth < 0)  { curMonth = 11; curYear--; }
+  renderCal();
+}
+
+function selectItem(el) {
+  document.querySelectorAll('.item-opt').forEach(o => o.classList.remove('active'));
+  el.classList.add('active');
+  selItem = el.dataset.item;
+  renderCal();
+}
+
+let rangeStart = null;
+let rangeEnd   = null;
+
+function selDay(el, ds) {
+  if (el.classList.contains('past') || el.classList.contains('booked')) return;
+
+  if (!rangeStart || (rangeStart && rangeEnd)) {
+    // Neue Auswahl starten
+    rangeStart = ds;
+    rangeEnd   = null;
+    document.querySelectorAll('.cal-day').forEach(d =>
+      d.classList.remove('sel','range-start','range-end','range-mid')
+    );
+    el.classList.add('range-start');
+    document.getElementById('calHint').textContent = 'Enddatum wählen …';
+    document.getElementById('calRangeInfo').className = 'cal-range-info';
+    document.getElementById('calRangeInfo').innerHTML = '';
+
+  } else {
+    // Enddatum setzen
+    if (ds < rangeStart) {
+      rangeEnd   = rangeStart;
+      rangeStart = ds;
+    } else {
+      rangeEnd = ds;
+    }
+    highlightRange();
+    showRangeInfo();
+    document.getElementById('calHint').textContent = '1. Klick: Startdatum · 2. Klick: Enddatum';
+  }
+}
+
+function highlightRange() {
+  document.querySelectorAll('.cal-day').forEach(d =>
+    d.classList.remove('sel','range-start','range-end','range-mid')
+  );
+  document.querySelectorAll('.cal-day').forEach(d => {
+    const ds = d.getAttribute('onclick')?.match(/'(\d{4}-\d{2}-\d{2})'/)?.[1];
+    if (!ds) return;
+    if (ds === rangeStart && ds === rangeEnd) {
+      d.classList.add('range-start','range-end');
+    } else if (ds === rangeStart) {
+      d.classList.add('range-start');
+    } else if (ds === rangeEnd) {
+      d.classList.add('range-end');
+    } else if (ds > rangeStart && ds < rangeEnd) {
+      d.classList.add('range-mid');
+    }
+  });
+}
+
+function showRangeInfo() {
+  const info = document.getElementById('calRangeInfo');
+  const fmt = ds => {
+    const [y,m,d] = ds.split('-');
+    return d + '.' + m + '.' + y;
+  };
+
+  // Prüfe ob belegte Tage im Zeitraum
+  const data = AVAIL[selItem] || {};
+  let hasBooked = false;
+  let cur = new Date(rangeStart);
+  const end = new Date(rangeEnd);
+  while (cur <= end) {
+    const ds = cur.toISOString().split('T')[0];
+    if (data[ds] === 'booked') { hasBooked = true; break; }
+    cur.setDate(cur.getDate() + 1);
+  }
+
+  // Anzahl Tage
+  const days = Math.round((new Date(rangeEnd) - new Date(rangeStart)) / 86400000) + 1;
+
+  if (hasBooked) {
+    info.className = 'cal-range-info visible cal-range-warn';
+    info.innerHTML = '⚠ Im gewählten Zeitraum (' + fmt(rangeStart) + ' – ' + fmt(rangeEnd) +
+      ') sind bereits Tage belegt. Bitte anderen Zeitraum wählen.';
+  } else {
+    info.className = 'cal-range-info visible';
+    info.innerHTML = '✓ <strong>' + fmt(rangeStart) + ' – ' + fmt(rangeEnd) + '</strong> (' +
+      days + (days === 1 ? ' Tag' : ' Tage') + ') — verfügbar! ' +
+      '<a href="#kontakt" onclick="anfragenMitDatum()" style="color:var(--wine);font-style:normal;">Jetzt anfragen →</a>';
+  }
+  info.style.display = 'block';
+}
+
+function anfragenMitDatum() {
+  if (!rangeStart || !rangeEnd) return;
+  const fmt = ds => { const [y,m,d] = ds.split('-'); return d + '.' + m + '.' + y; };
+  const ta = document.querySelector('.form-textarea');
+  if (ta && !ta.value) {
+    ta.value = 'Gewünschter Zeitraum: ' + fmt(rangeStart) + ' bis ' + fmt(rangeEnd);
+  }
+  const dateInput = document.getElementById('eventDate');
+  if (dateInput) {
+    dateInput.value = rangeStart;
+    checkAvailability(rangeStart);
+  }
+}
+
+renderCal();
+
+
+// ── VERFÜGBARKEITSPRÜFUNG IM FORMULAR ────────────────
+function checkAvailability(dateStr) {
+  if (!dateStr) return;
+
+  // Freitag der Woche berechnen (Buchungszeitraum Fr–Mo)
+  const d = new Date(dateStr);
+  const day = d.getDay(); // 0=So,1=Mo,...,5=Fr,6=Sa
+  // Finde den Freitag der gleichen Woche
+  const friday = new Date(d);
+  friday.setDate(d.getDate() - ((day + 2) % 7));
+  
+  // Prüfe alle 4 Tage Fr/Sa/So/Mo
+  function getDates(start) {
+    const dates = [];
+    for (let i = 0; i < 4; i++) {
+      const nd = new Date(start);
+      nd.setDate(start.getDate() + i);
+      dates.push(nd.toISOString().split('T')[0]);
+    }
+    return dates;
+  }
+  const weDates = getDates(friday);
+  
+  // Status für ein Item bestimmen
+  function getStatus(itemDates) {
+    let worst = 'frei';
+    for (const ds of weDates) {
+      const s = itemDates[ds];
+      if (s === 'booked') return 'belegt';
+      if (s === 'opt' && worst !== 'belegt') worst = 'opt';
+    }
+    return worst;
+  }
+
+  const items = {
+    marktzelt:  { avail: AVAIL.marktzelt,  label: 'Marktzelt (blau-weiß)' },
+    ritterzelt: { avail: AVAIL.ritterzelt, label: 'Ritterzelt (grün-weiß)' },
+    rundzelt:   { avail: AVAIL.rundzelt1,  label: 'Rundzelt (weiß)' }
+  };
+
+  let anyBelegt = false;
+  for (const [key, cfg] of Object.entries(items)) {
+    const status = getStatus(cfg.avail || {});
+    const checkEl = document.getElementById('check-' + key);
+    const badgeEl = document.getElementById('badge-' + key);
+    const inputEl = checkEl ? checkEl.querySelector('input') : null;
+
+    if (!checkEl) continue;
+
+    checkEl.classList.remove('unavailable','available');
+    badgeEl.className = 'avail-badge';
+
+    if (status === 'belegt') {
+      checkEl.classList.add('unavailable');
+      badgeEl.classList.add('belegt');
+      badgeEl.textContent = 'Nicht verfügbar';
+      if (inputEl) { inputEl.checked = false; inputEl.disabled = true; }
+      anyBelegt = true;
+    } else if (status === 'opt') {
+      checkEl.classList.add('available');
+      badgeEl.classList.add('opt');
+      badgeEl.textContent = 'Auf Anfrage';
+      if (inputEl) inputEl.disabled = false;
+    } else {
+      checkEl.classList.add('available');
+      badgeEl.classList.add('frei');
+      badgeEl.textContent = 'Verfügbar';
+      if (inputEl) inputEl.disabled = false;
+    }
+  }
+
+  // Rundzelt: wenn BEIDE belegt → sperren (sonst einer noch verfügbar)
+  const r1 = getStatus(AVAIL.rundzelt1 || {});
+  const r2 = getStatus(AVAIL.rundzelt2 || {});
+  const rzCheck = document.getElementById('check-rundzelt');
+  const rzBadge = document.getElementById('badge-rundzelt');
+  const rzInput = rzCheck ? rzCheck.querySelector('input') : null;
+  if (r1 === 'booked' && r2 === 'booked') {
+    rzCheck.classList.add('unavailable');
+    rzBadge.className = 'avail-badge belegt';
+    rzBadge.textContent = 'Nicht verfügbar';
+    if (rzInput) { rzInput.checked = false; rzInput.disabled = true; }
+  } else if (r1 !== 'booked' && r2 !== 'booked') {
+    rzCheck.classList.remove('unavailable');
+    rzCheck.classList.add('available');
+    rzBadge.className = 'avail-badge frei';
+    rzBadge.textContent = r1 === 'frei' && r2 === 'frei' ? '2× Verfügbar' : '1× Verfügbar';
+    if (rzInput) rzInput.disabled = false;
+  } else {
+    rzCheck.classList.remove('unavailable');
+    rzCheck.classList.add('available');
+    rzBadge.className = 'avail-badge frei';
+    rzBadge.textContent = '1× Verfügbar';
+    if (rzInput) rzInput.disabled = false;
+  }
+
+  // Hinweistext
+  const hint = document.getElementById('dateHint');
+  if (hint) {
+    const freieZelte = Object.entries(items).filter(([k]) => {
+      if (k === 'rundzelt') return !(r1 === 'booked' && r2 === 'booked');
+      return getStatus(items[k].avail || {}) !== 'belegt';
+    }).length;
+    hint.textContent = freieZelte === 3
+      ? '✓ Alle Zelte verfügbar für dieses Wochenende'
+      : anyBelegt
+        ? '⚠ Einige Zelte sind belegt — bitte nur verfügbare auswählen'
+        : '✓ Verfügbarkeit geprüft';
+  }
+}
+
+// ── FORM ─────────────────────────────────────────
+function submitForm() {
+  showToast('✓ Anfrage erfolgreich gesendet! Wir melden uns bald.');
+}
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4500);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deko – Majas Mittelalterverleih</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream:       #F8EDD5;
+      --cream-mid:   #F0DEB8;
+      --cream-dark:  #E2C98A;
+      --gold:        #C8921E;
+      --gold-light:  #E5B040;
+      --gold-bright: #F2CA6A;
+      --wine:        #7B1528;
+      --wine-dark:   #521020;
+      --dark:        #1A0808;
+      --text:        #261008;
+      --text-mid:    #5C2A18;
+      --text-light:  #8C4828;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background-color: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1rem 3rem;
+      background: rgba(248,237,213,0.97);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--cream-dark);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Cinzel', serif; font-weight: 700; font-size: 1rem;
+      color: var(--wine); text-decoration: none; letter-spacing: 0.05em;
+      line-height: 1.2; display: flex; flex-direction: column;
+    }
+    .nav-logo span {
+      font-size: 0.62rem; font-family: 'Cormorant Garamond', serif;
+      font-style: italic; color: var(--gold); letter-spacing: 0.25em;
+    }
+    .nav-back {
+      font-family: 'Cinzel', serif; font-size: 0.68rem;
+      letter-spacing: 0.15em; color: var(--text-mid);
+      text-decoration: none; text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-back:hover { color: var(--wine); }
+    .nav-cta-link {
+      background: var(--wine); color: var(--cream) !important;
+      padding: 0.5rem 1.25rem;
+      font-family: 'Cinzel', serif; font-size: 0.68rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      text-decoration: none; transition: background 0.3s;
+    }
+    .nav-cta-link:hover { background: var(--wine-dark); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 8rem 0 4rem;
+      background:
+        radial-gradient(ellipse 100% 80% at 50% 100%, #3A0812 0%, transparent 55%),
+        linear-gradient(160deg, #200A0F 0%, #3D1208 40%, #541A0E 100%);
+      text-align: center; position: relative;
+    }
+    .page-hero::after {
+      content: ''; position: absolute; inset: 1.5rem;
+      border: 1px solid rgba(200,146,30,0.15); pointer-events: none;
+    }
+    .breadcrumb {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 0.95rem; color: rgba(248,237,213,0.5);
+      letter-spacing: 0.2em; margin-bottom: 1rem;
+    }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .page-title {
+      font-family: 'Cinzel', serif; font-weight: 900;
+      font-size: clamp(2rem, 5vw, 4rem);
+      color: var(--cream); letter-spacing: 0.04em; margin-bottom: 1rem;
+    }
+    .page-sub {
+      font-size: 1.2rem; color: rgba(248,237,213,0.65);
+      font-style: italic; max-width: 580px; margin: 0 auto; line-height: 1.6;
+    }
+    .hero-divider {
+      display: flex; align-items: center; gap: 0.75rem;
+      justify-content: center; margin: 1.5rem auto; width: 240px;
+    }
+    .hero-divider::before, .hero-divider::after {
+      content: ''; flex: 1; height: 1px;
+    }
+    .hero-divider::before { background: linear-gradient(90deg, transparent, var(--gold)); }
+    .hero-divider::after  { background: linear-gradient(90deg, var(--gold), transparent); }
+    .hero-divider-icon { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.3em; }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 5rem 0; }
+
+    /* ── PAKET BOX ── */
+    .paket-header {
+      text-align: center; margin-bottom: 4rem;
+    }
+    .sec-label {
+      display: block; font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 1rem; color: var(--gold); letter-spacing: 0.45em;
+      text-transform: uppercase; margin-bottom: 0.6rem;
+    }
+    .sec-title {
+      font-family: 'Cinzel', serif; font-size: clamp(1.8rem,4vw,2.8rem);
+      font-weight: 700; color: var(--wine); letter-spacing: 0.02em;
+      margin-bottom: 0.6rem;
+    }
+    .sec-sub {
+      font-size: 1.1rem; color: var(--text-mid); max-width: 580px;
+      margin: 0 auto; line-height: 1.75; font-style: italic;
+    }
+
+    /* ── ARTIKEL GRID ── */
+    .artikel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2px;
+      background: var(--cream-dark);
+      border: 2px solid var(--cream-dark);
+      margin-bottom: 4rem;
+    }
+    .artikel-card {
+      background: white;
+      padding: 2rem;
+      transition: background 0.3s;
+    }
+    .artikel-card:hover { background: var(--cream); }
+    .artikel-img {
+      width: 100%; aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #2A1208 0%, #4A2010 50%, #2A1208 100%);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem; position: relative; overflow: hidden;
+    }
+    .artikel-img-ph {
+      text-align: center; color: rgba(248,237,213,0.2); padding: 1rem;
+    }
+    .artikel-img-ph svg { width: 50px; height: 50px; display: block; margin: 0 auto 0.5rem; }
+    .artikel-img-ph p {
+      font-family: 'Cinzel', serif; font-size: 0.6rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+    }
+    .artikel-cat {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 0.82rem; color: var(--gold); letter-spacing: 0.3em;
+      text-transform: uppercase; display: block; margin-bottom: 0.3rem;
+    }
+    .artikel-name {
+      font-family: 'Cinzel', serif; font-size: 1.25rem;
+      color: var(--wine); margin-bottom: 0.5rem;
+    }
+    .artikel-desc {
+      font-size: 0.98rem; color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    /* ── PREIS BOX ── */
+    .preis-box {
+      background: #3A1208;
+      padding: 4rem 3rem;
+      text-align: center;
+      position: relative;
+      margin-bottom: 4rem;
+    }
+    .preis-box::before {
+      content: ''; position: absolute; inset: 1rem;
+      border: 1px solid rgba(200,146,30,0.2); pointer-events: none;
+    }
+    .preis-badge {
+      display: inline-block; background: var(--gold); color: var(--dark);
+      font-family: 'Cinzel', serif; font-size: 0.6rem;
+      letter-spacing: 0.2em; padding: 0.3rem 1rem; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .preis-titel {
+      font-family: 'Cinzel', serif; font-size: clamp(1.5rem, 3vw, 2.2rem);
+      color: var(--cream); margin-bottom: 0.5rem;
+    }
+    .preis-sub {
+      font-style: italic; color: rgba(248,237,213,0.55);
+      font-size: 1.05rem; margin-bottom: 2rem;
+    }
+    .preis-value {
+      font-family: 'Cinzel', serif; font-size: 3.5rem;
+      font-weight: 700; color: var(--gold); line-height: 1;
+    }
+    .preis-unit {
+      font-size: 1rem; color: rgba(248,237,213,0.45); margin-bottom: 2rem; display: block;
+    }
+    .preis-feats {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 0.75rem; margin-bottom: 2.5rem;
+    }
+    .preis-feat {
+      font-size: 0.98rem; color: rgba(248,237,213,0.7);
+      padding: 0.4rem 1rem;
+      background: rgba(200,146,30,0.12);
+      border: 1px solid rgba(200,146,30,0.2);
+    }
+    .preis-kaution {
+      font-style: italic; color: rgba(248,237,213,0.4);
+      font-size: 0.95rem; margin-bottom: 2rem;
+    }
+    .btn-gold {
+      display: inline-block; padding: 1rem 3rem;
+      background: var(--gold); color: var(--dark);
+      font-family: 'Cinzel', serif; font-size: 0.72rem;
+      font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+      text-decoration: none; border: 2px solid var(--gold);
+      transition: all 0.3s;
+    }
+    .btn-gold:hover { background: var(--gold-light); border-color: var(--gold-light); }
+
+    /* ── HINWEIS ── */
+    .hinweis {
+      background: var(--cream-mid); border: 1px solid var(--cream-dark);
+      border-left: 3px solid var(--wine); padding: 1.5rem 2rem;
+      font-size: 1rem; color: var(--text-mid); line-height: 1.7;
+    }
+    .hinweis strong { color: var(--wine); font-style: normal; }
+    .hinweis a { color: var(--wine); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); padding: 2rem 0;
+      text-align: center; position: relative;
+    }
+    footer::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .footer-btm {
+      font-size: 0.78rem; color: rgba(248,237,213,0.28);
+    }
+    .footer-btm a {
+      color: rgba(248,237,213,0.4); text-decoration: none; transition: color 0.3s;
+    }
+    .footer-btm a:hover { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      nav { padding: 0.9rem 1.5rem; }
+      .preis-box { padding: 2.5rem 1.5rem; }
+      .page-hero::after { display: none; }
+    }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="majasmittelalterverleih.html" class="nav-logo">
+    Majas Mittelalterverleih
+    <span>Historisches Ambiente</span>
+  </a>
+  <a href="majasmittelalterverleih.html" class="nav-back">← Zurück zur Hauptseite</a>
+  <a href="majasmittelalterverleih.html#kontakt" class="nav-cta-link">Anfrage stellen</a>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <p class="breadcrumb"><a href="majasmittelalterverleih.html">Startseite</a> &nbsp;/&nbsp; Deko</p>
+    <h1 class="page-title">Deko</h1>
+    <div class="hero-divider"><span class="hero-divider-icon">❧ ❧ ❧</span></div>
+    <p class="page-sub">Felle, Kochutensilien und Mittelalterstühle — als stimmungsvolles Paket zu jedem Zelt dazubuchbar.</p>
+  </div>
+</div>
+
+<!-- ARTIKEL -->
+<section>
+  <div class="container">
+
+    <div class="paket-header reveal">
+      <span class="sec-label">— Das Deko-Paket —</span>
+      <h2 class="sec-title">Was ist dabei?</h2>
+      <p class="sec-sub">Alle folgenden Artikel werden als Komplettpaket verliehen — perfekt abgestimmt für ein echtes Lagerfeeling.</p>
+    </div>
+
+    <div class="artikel-grid reveal">
+
+      <!-- SCHAFFELLE -->
+      <div class="artikel-card">
+        <div class="artikel-img">
+          <div class="artikel-img-ph">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="50" cy="55" rx="35" ry="28" stroke="currentColor" stroke-width="2"/>
+              <path d="M25 45 Q30 25 50 22 Q70 25 75 45" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            </svg>
+            <p>Foto folgt</p>
+          </div>
+        </div>
+        <span class="artikel-cat">Deko · Felle</span>
+        <h3 class="artikel-name">Schaf- &amp; Kuhfelle</h3>
+        <p class="artikel-desc">Echte Schaf- und Kuhfelle für den Boden, Stühle oder als Wanddekoration — geben jedem Lager sofort Wärme und Authentizität.</p>
+      </div>
+
+      <!-- FEUERSCHALE -->
+      <div class="artikel-card">
+        <div class="artikel-img">
+          <div class="artikel-img-ph">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M30 70 Q50 20 70 70" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <ellipse cx="50" cy="72" rx="25" ry="8" stroke="currentColor" stroke-width="2"/>
+              <line x1="50" y1="80" x2="50" y2="92" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <p>Foto folgt</p>
+          </div>
+        </div>
+        <span class="artikel-cat">Kochutensilien</span>
+        <h3 class="artikel-name">Feuerschale</h3>
+        <p class="artikel-desc">Robuste Feuerschale für stimmungsvolles Lagerfeuer-Feeling — ein echter Blickfang und praktisches Herzstück jedes Lagerlagers.</p>
+      </div>
+
+      <!-- DREIBEIN -->
+      <div class="artikel-card">
+        <div class="artikel-img">
+          <div class="artikel-img-ph">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="50" y1="15" x2="30" y2="85" stroke="currentColor" stroke-width="2"/>
+              <line x1="50" y1="15" x2="70" y2="85" stroke="currentColor" stroke-width="2"/>
+              <line x1="50" y1="15" x2="50" y2="85" stroke="currentColor" stroke-width="2"/>
+              <circle cx="50" cy="15" r="4" fill="currentColor" opacity="0.5"/>
+              <path d="M42 45 Q50 55 58 45" stroke="currentColor" stroke-width="1.2" fill="none"/>
+            </svg>
+            <p>Foto folgt</p>
+          </div>
+        </div>
+        <span class="artikel-cat">Kochutensilien</span>
+        <h3 class="artikel-name">Dreibein</h3>
+        <p class="artikel-desc">Stabiles Dreibein — sowohl als hängende Variante (zum Aufhängen von Töpfen übers Feuer) als auch als stehendes Modell vorhanden.</p>
+      </div>
+
+      <!-- KOCHTOPF & PFANNE -->
+      <div class="artikel-card">
+        <div class="artikel-img">
+          <div class="artikel-img-ph">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="50" cy="65" rx="28" ry="10" stroke="currentColor" stroke-width="2"/>
+              <path d="M22 65 L22 48 Q22 38 50 38 Q78 38 78 48 L78 65" stroke="currentColor" stroke-width="2" fill="none"/>
+              <line x1="22" y1="52" x2="10" y2="52" stroke="currentColor" stroke-width="2"/>
+              <line x1="78" y1="52" x2="90" y2="52" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <p>Foto folgt</p>
+          </div>
+        </div>
+        <span class="artikel-cat">Kochutensilien</span>
+        <h3 class="artikel-name">Kochtopf &amp; Pfanne</h3>
+        <p class="artikel-desc">Authentischer Kochtopf und Pfanne im historischen Stil — als Dekoration oder für echtes Kochen am Feuer. Perfekt für lebendiges Lagerleben.</p>
+      </div>
+
+      <!-- STÜHLE -->
+      <div class="artikel-card">
+        <div class="artikel-img">
+          <div class="artikel-img-ph">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="28" y="50" width="44" height="5" stroke="currentColor" stroke-width="1.8"/>
+              <rect x="32" y="28" width="36" height="22" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="35" y1="55" x2="30" y2="85" stroke="currentColor" stroke-width="2"/>
+              <line x1="65" y1="55" x2="70" y2="85" stroke="currentColor" stroke-width="2"/>
+              <line x1="42" y1="55" x2="38" y2="85" stroke="currentColor" stroke-width="2"/>
+              <line x1="58" y1="55" x2="62" y2="85" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <p>Foto folgt</p>
+          </div>
+        </div>
+        <span class="artikel-cat">Möbel</span>
+        <h3 class="artikel-name">Mittelalterstühle</h3>
+        <p class="artikel-desc">Schöne Mittelalterstühle im historischen Design — stilvolle Sitzgelegenheiten die perfekt in jede mittelalterliche Atmosphäre passen.</p>
+      </div>
+
+    </div>
+
+    <!-- PREIS -->
+    <div class="preis-box reveal">
+      <span class="preis-badge">Zusatzpaket</span>
+      <h2 class="preis-titel">Deko-Paket</h2>
+      <p class="preis-sub">Alle Artikel zusammen — nur als Zusatz zu einem Zelt buchbar</p>
+      <div class="preis-value">50 €</div>
+      <span class="preis-unit">pro Wochenende (Freitag bis Montag)</span>
+      <div class="preis-feats">
+        <span class="preis-feat">Schaf- &amp; Kuhfelle</span>
+        <span class="preis-feat">Feuerschale</span>
+        <span class="preis-feat">Dreibein hängend &amp; stehend</span>
+        <span class="preis-feat">Kochtopf &amp; Pfanne</span>
+        <span class="preis-feat">Mittelalterstühle</span>
+      </div>
+      
+      <a href="majasmittelalterverleih.html#kontakt" class="btn-gold">Zum Zelt dazubuchen</a>
+    </div>
+
+    <!-- HINWEIS -->
+    <div class="hinweis reveal">
+      💡 <strong>Hinweis:</strong> Das Deko-Paket ist nur in Kombination mit einem Zelt buchbar. Schau dir zunächst unsere <a href="zelte.html">Zelte</a> an und wähle beim Anfragen einfach das Deko-Paket dazu.
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-btm">
+      <span>© 2026 Majas Mittelalterverleih &nbsp;·&nbsp;
+        <a href="majasmittelalterverleih.html">Startseite</a> &nbsp;·&nbsp;
+        <a href="zelte.html">Zelte</a> &nbsp;·&nbsp;
+        <a href="majasmittelalterverleih.html#kontakt">Kontakt</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      e.target.style.transitionDelay = (i * 0.08) + 's';
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
